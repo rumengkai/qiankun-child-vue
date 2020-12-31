@@ -38,11 +38,21 @@ function render(props) {
   }
   // 在 render 中创建 VueRouter，可以保证在卸载微应用时，移除 location 事件监听，防止事件污染
   router = new VueRouter({
-    // 运行在主应用中时，添加路由命名空间 /vue
-    base: window.__POWERED_BY_QIANKUN__ ? `/${packageName}` : "/",
-    mode: "history",
     routes,
   });
+
+   // 判断 qiankun 环境则进行路由拦截，判断跳转路由是否有 /micro 开头前缀，没有则加上
+   if(window.__POWERED_BY_QIANKUN__){
+    router.beforeEach((to, from, next) => {
+      if(!to.path.includes('/'+packageName)){
+        next({
+          path: '/' + packageName + to.path
+        })
+      }else{
+        next()
+      }
+    })
+  }
 
   // 挂载应用
   instance = new Vue({
