@@ -10,7 +10,7 @@
 
 <script>
 import routes from "./router"
-import actions from "@/shared/actions";
+import {watchIndex} from "@/utils/actions";
 
 export default {
   name: 'App',
@@ -23,14 +23,12 @@ export default {
   mounted() {
     // 注册观察者函数
     // onGlobalStateChange 第二个参数为 true，表示立即执行一次观察者函数
-    actions.onGlobalStateChange(state => {
-      const { index } = state;
-      // 未登录 - 返回主页
-      if (!index) {
-        console.log('未检测到登录信息')
-      }
-      this.number = index
-    }, true);
+    watchIndex((state, prevState) => {
+          // state: 变更后的状态; prevState: 变更前的状态
+          console.log("主应用观察者：number 改变前的值为 ", prevState.index);
+          console.log("主应用观察者：登录状态发生改变，改变后的 number 的值为 ", state.index);
+          this.number = state.index
+      });
   },
 }
 </script>
