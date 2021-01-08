@@ -28,7 +28,7 @@ export default {
           console.log("主应用观察者：number 改变前的值为 ", prevState.index);
           console.log("主应用观察者：登录状态发生改变，改变后的 number 的值为 ", state.index);
           this.number = state.index
-      });
+      },true);
   },
 }
 </script>

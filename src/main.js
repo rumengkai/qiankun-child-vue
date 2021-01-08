@@ -7,16 +7,10 @@ import "./public-path";
 import App from './App.vue'
 import routes from "./router"
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-
 const packageName = require('../package.json').name;
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
-Vue.use(ElementUI);
-
-
 
 let instance = null;
 let router = null;
