@@ -1,9 +1,8 @@
 {
-  "name": "{{name}}",
-  "description": "{{description}}",
-  "author": "{{author}}",
+  "name": "child-vue",
+  "description": "description",
+  "author": "author",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build --mode prod",
